@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risk Odds Calculator</title>
+    <title>Risk Battle Odds Calculator</title>
 </head>
 <body>
-    <p>I'm basically clueless about HTML/JS, but I've managed to bodge this together.<br>Half of the HTML/JS is copied from random places, in true programmer style.<br><br>Please do note that you need to enter the number of attackers in the battle, which is 1 troop fewer than the total number of troops in the attacking territory.</p>
+    <p><br>Risk Battle Odds Calculator!<br><br>This webpage will calculate the likelihood of winning a given battle of risk given the number of attackers and defenders in said battle.<br><br>Please do note that you need to enter the number of attackers in the battle, which is 1 troop fewer than the total number of troops in the attacking territory.</p>
     <form onsubmit="return mainfunct();" action="">
         <div>
             <label for="numatk">Enter the number of attackers:<br></label>
@@ -21,6 +21,7 @@
         </div>
     </form>
     <p id="output"></p>
+    <p><br><br><br><br><br><br>Published 2024-02-08 by chickenspaceprogram.</p>
     <script>
         var oddslist = []
         async function fetchJson() {

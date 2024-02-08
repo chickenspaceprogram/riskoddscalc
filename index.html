@@ -6,6 +6,27 @@
     <title>Risk Odds Calculator</title>
 </head>
 <body>
-    <p>This is currently just a landing page. Eventually it will contain something useful!</p>
+    <p>I'm basically clueless about HTML/JS, but I've managed to bodge this together.<br>Half of the HTML/JS is copied from random places, in true programmer style.<br><br>Please do note that you need to enter the number of attackers in the battle, which is 1 troop fewer than the total number of troops in the attacking territory.</p>
+    <form onsubmit="getInputs()" action="">
+        <div class="form-example">
+            <label for="numatk">Enter the number of attackers:<br></label>
+            <input type="number" name="numatk" id="numatk" max="1000" required>
+        </div>
+        <div class="form-example">
+            <label for="numdef">Enter the number of defenders:<br></label>
+            <input type="number" name="numdef" id="numdef" max="1000" required>
+        </div>
+        <div class="form-example">
+            <input type="submit" value="Simulate Battle!" />
+        </div>
+    </form>
+    <script>
+        function getInputs() {
+            var numatk = document.getElementById("numatk").value;
+            var numdef = document.getElementById("numdef").value;
+            console.log(numatk)
+            console.log(numdef)
+        }
+    </script>
 </body>
 </html>

@@ -21,6 +21,7 @@
         </div>
     </form>
     <p id="atkwinprob"></p>
+    <p id="defwinprob"></p>
     <p id="atkexplosses"></p>
     <p id="defexplosses"></p>
     <p><br><br><br><br><br><br>Published 2024-02-08 by chickenspaceprogram.</p>
@@ -47,11 +48,13 @@
             var atkexploss = atkexplosslist[numdef][numatk]
             var defexploss = defexplosslist[numdef][numatk]
             atkwinprob = Math.round(atkwinprob * 100000) / 1000
+            var defwinprob = Math.round((1 - atkwinprob) * 100000) / 1000
             atkexploss = Math.round(atkexploss * 10) / 10
             defexploss = Math.round(defexploss * 10) / 10
-            document.getElementById("atkwinprob").innerHTML = "There is a " + atkwinprob + "% chance that the attacker will win the battle."
-            document.getElementById("atkexplosses").innerHTML = "The attacker is expected to lose " + atkexploss + "troops."
-            document.getElementById("defexplosses").innerHTML = "The defender is expected to lose " + defexploss + "troops."
+            document.getElementById("atkwinprob").innerHTML =   "Attacker win chance:            " + atkwinprob + "%"
+            document.getElementById("defwinprob").innerHTML =   "Defender win chance:            " + defwinprob + "%"
+            document.getElementById("atkexplosses").innerHTML = "Attacker expected troop losses: " + atkexploss
+            document.getElementById("defexplosses").innerHTML = "Defender expected troop losses: " + defexploss
             return false;
         }
         fetchAtkWinProb()

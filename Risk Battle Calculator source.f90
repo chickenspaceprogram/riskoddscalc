@@ -1,4 +1,5 @@
 program expectedvals
+    !this program is included for historical purposes only, it's not actually used in the current version. Still kinda useful though.
     implicit none
     real, allocatable :: oldArray(:,:), newArray(:,:)
     real :: atkWinProb, defWinProb, expAtkLoss, expDefLoss

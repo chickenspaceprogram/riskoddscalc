@@ -20,25 +20,43 @@
             <input type="submit" value="Simulate Battle!" />
         </div>
     </form>
-    <p id="output"></p>
+    <p id="atkwinprob"></p>
+    <p id="atkexplosses"></p>
+    <p id="defexplosses"></p>
     <p><br><br><br><br><br><br>Published 2024-02-08 by chickenspaceprogram.</p>
     <script>
-        var oddslist = []
-        async function fetchJson() {
-            const fetchedjson = await fetch('https://chickenspaceprogram.github.io/riskoddscalc/battleodds.json');
-            oddslist = await fetchedjson.json();
+        var atkwinproblist = []
+        async function fetchAtkWinProb() {
+            const fetchedjson = await fetch("https://chickenspaceprogram.github.io/riskoddscalc/atkWinProbs.json");
+            atkwinproblist = await fetchedjson.json();
+        }
+        async function fetchAtkExpLoss() {
+            const fetchedjson = await fetch("https://chickenspaceprogram.github.io/riskoddscalc/atkExpLoss.json");
+            atkexplosslist = await fetchedjson.json();
+        }
+        async function fetchDefExpLoss() {
+            const fetchedjson = await fetch("https://chickenspaceprogram.github.io/riskoddscalc/defExpLoss.json");
+            defexplosslist = await fetchedjson.json();
         }
         function mainfunct() {
             var numatk = document.getElementById("numatk").value;
             var numdef = document.getElementById("numdef").value;
             console.log("Number attackers: ", numatk)
             console.log("Number defenders: ", numdef)
-            var atkwinprob = oddslist[numdef][numatk]
+            var atkwinprob = atkwinproblist[numdef][numatk]
+            var atkexploss = atkexplosslist[numdef][numatk]
+            var defexploss = defexplosslist[numdef][numatk]
             atkwinprob = Math.round(atkwinprob * 100000) / 1000
-            document.getElementById("output").innerHTML = "There is a " + atkwinprob + "% chance that the attacker will win the battle."
+            atkexploss = Math.round(atkexploss * 10) / 10
+            defexploss = Math.round(defexploss * 10) / 10
+            document.getElementById("atkwinprob").innerHTML = "There is a " + atkwinprob + "% chance that the attacker will win the battle."
+            document.getElementById("atkexplosses").innerHTML = "The attacker is expected to lose " + atkexploss + "troops."
+            document.getElementById("defexplosses").innerHTML = "The defender is expected to lose " + defexploss + "troops."
             return false;
         }
-        fetchJson()
+        fetchAtkWinProb()
+        fetchAtkExpLoss()
+        fetchDefExpLoss()
     </script>
 </body>
 </html>

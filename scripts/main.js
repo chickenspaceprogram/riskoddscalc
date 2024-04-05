@@ -1,4 +1,5 @@
 function main() {
+    event.preventDefault()
     let atk = document.getElementById("numAtk").value;
     let def = document.getElementById("numDef").value;
     if (atk >= tbl_size[0] || def >= tbl_size[1]) {

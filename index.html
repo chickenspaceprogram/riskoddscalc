@@ -7,14 +7,14 @@
 </head>
 <body>
     <p><br>Risk Battle Odds Calculator!<br><br>This webpage will calculate the likelihood of winning a given battle in the board game Risk® given the number of attackers and defenders in said battle.<br><br>Please do note that you need to enter the number of attackers in the battle, which is 1 troop fewer than the total number of troops in the attacking territory.</p>
-    <form onsubmit="return mainfunct();" action="">
+    <form onsubmit="return main();" action="">
         <div>
-            <label for="numatk">Enter the number of attackers:<br></label>
-            <input type="number" name="numatk" id="numatk" min="1", max="1000" required>
+            <label for="numAtk">Enter the number of attackers:<br></label>
+            <input type="number" name="numAtk" id="numAtk" min="1", max="1000" required>
         </div>
         <div>
-            <label for="numdef">Enter the number of defenders:<br></label>
-            <input type="number" name="numdef" id="numdef" min="1", max="1000" required>
+            <label for="numDef">Enter the number of defenders:<br></label>
+            <input type="number" name="numDef" id="numDef" min="1", max="1000" required>
         </div>
         <div">
             <input type="submit" value="Simulate Battle!" />
@@ -25,42 +25,6 @@
     <p id="atkexplosses"></p>
     <p id="defexplosses"></p>
     <p><br><br><br><br><br><br>Published 2024-02-08 by chickenspaceprogram.</p>
-    <script>
-        var atkwinproblist = []
-        async function fetchAtkWinProb() {
-            const fetchedjson = await fetch("https://chickenspaceprogram.github.io/riskoddscalc/atkWinProbs.json");
-            atkwinproblist = await fetchedjson.json();
-        }
-        async function fetchAtkExpLoss() {
-            const fetchedjson = await fetch("https://chickenspaceprogram.github.io/riskoddscalc/atkExpLoss.json");
-            atkexplosslist = await fetchedjson.json();
-        }
-        async function fetchDefExpLoss() {
-            const fetchedjson = await fetch("https://chickenspaceprogram.github.io/riskoddscalc/defExpLoss.json");
-            defexplosslist = await fetchedjson.json();
-        }
-        function mainfunct() {
-            var numatk = document.getElementById("numatk").value;
-            var numdef = document.getElementById("numdef").value;
-            console.log("Number attackers: ", numatk)
-            console.log("Number defenders: ", numdef)
-            var atkwinprob = atkwinproblist[numdef][numatk]
-            var atkexploss = atkexplosslist[numdef][numatk]
-            var defexploss = defexplosslist[numdef][numatk]
-            var defwinprob = 1 - atkwinprob
-            atkwinprob = Math.round(atkwinprob * 100000) / 1000
-            defwinprob = Math.round(defwinprob * 100000) / 1000
-            atkexploss = Math.round(atkexploss * 10) / 10
-            defexploss = Math.round(defexploss * 10) / 10
-            document.getElementById("atkwinprob").innerHTML =   "Attacker win chance: <mark>" + atkwinprob + "%</mark>"
-            document.getElementById("defwinprob").innerHTML =   "Defender win chance: <mark>" + defwinprob + "%</mark>"
-            document.getElementById("atkexplosses").innerHTML = "Attacker expected troop losses: <mark>" + atkexploss + "</mark>"
-            document.getElementById("defexplosses").innerHTML = "Defender expected troop losses: <mark>" + defexploss + "</mark>"
-            return false;
-        }
-        fetchAtkWinProb()
-        fetchAtkExpLoss()
-        fetchDefExpLoss()
-    </script>
+    <script src="scripts/main.js""></script>
 </body>
 </html>

@@ -9,7 +9,6 @@ function main() {
     document.getElementById("defwinprob").innerHTML = "Defender win chance: <mark>" + (Math.round((1 - atkWinProb[atk][def]) * 100000) / 1000) + "%</mark>"
     document.getElementById("atkexplosses").innerHTML = "Attacker expected troop losses: <mark>" + (Math.round(atkExpLoss[atk][def] * 10) / 10) + "</mark>"
     document.getElementById("defexplosses").innerHTML = "Defender expected troop losses: <mark>" + (Math.round(defExpLoss[atk][def] * 10) / 10) + "</mark>"
-    console.log(atkWinProb)
 };
 
 function makeTbl(atk, def) {
@@ -18,7 +17,7 @@ function makeTbl(atk, def) {
     atkExpLoss = Array.from(Array(atk + 1), () => new Array(def + 1).fill(0)); // seriously why are JS arrays so dumb
     defExpLoss = Array.from(Array(atk + 1), () => new Array(def + 1).fill(0));
     for (i = 1; i <= atk; i++) {
-        atkWinProb[0][i] = 1
+        atkWinProb[i][0] = 1
     }
 
     for (numAtk = 1; numAtk <= atk; numAtk++) {
